@@ -1,2 +1,2 @@
-# pong
+# Pong
 crazy pong game 
