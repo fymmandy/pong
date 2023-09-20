@@ -15,6 +15,7 @@ angle = [0,1,2]
 BLUE = (0,0,255)
 RED = (255,0,0)
 BLACK = (0,0,0)
+WHITE = (255,255,255)
 
 #ball (radius in pixel, ball coordinates)
 radius = 15
@@ -148,5 +149,11 @@ while run:
     pygame.draw.circle(wn, BLUE, (ball_x, ball_y),radius)
     pygame.draw.rect(wn, RED, pygame.Rect(left_paddle_x, left_paddle_y, paddle_width, paddle_height))
     pygame.draw.rect(wn, RED, pygame.Rect(right_paddle_x, right_paddle_y, paddle_width, paddle_height))
-
+    
+    #small circle with radius of 4 to indicate activated slam function
+    if left_gadget == 1:
+        pygame.draw.circle(wn, WHITE,(left_paddle_x + 10,left_paddle_y +10), 4)
+    if right_gadget == 1:
+        pygame.draw.circle(wn, WHITE,(right_paddle_x + 10,right_paddle_y +10), 4)
+        
     pygame.display.update()
