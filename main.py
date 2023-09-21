@@ -127,6 +127,7 @@ while run:
             ball_vel_x *= -1
     
     #gadgets in action
+    # gadget 1 is slam
     if left_gadget == 1:
         if left_paddle_x <= ball_x <= left_paddle_x + paddle_width:
             if left_paddle_y <= ball_y <= left_paddle_y + paddle_height:
@@ -134,11 +135,12 @@ while run:
                 ball_vel_x *= -3
                 left_gadget = 0
                 left_gadget_remaining -= 1
+    #gadget 2 is flash
     elif left_gadget == 2:
         left_paddle_y = ball_y
         left_gadget = 0
-        left_gadget_remaining -= 1
-    
+        left_gadget_remaining -= 1 
+            
     if right_gadget == 1:
         if right_paddle_x <= ball_x <= right_paddle_x + paddle_width:
             if right_paddle_y <= ball_y <= right_paddle_y + paddle_height:
