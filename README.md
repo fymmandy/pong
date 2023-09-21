@@ -2,6 +2,7 @@
 This is classic Pong with a twist!
 
 Game controls:
+
 For Player 1: 
 w = paddle up
 s = paddle down
@@ -14,8 +15,11 @@ Down arrow = paddle down
 Right arrow = Slam 
 Left arrow = Flash
 
-Slam increases the speed of the ball once it touches the paddle, each player starts with 3 Slams
+Gadgets!
 
-Flash teleports the paddle to ball's current y coordinate, each play starts with 3 flashes
+Slam increases the speed of the ball once it touches the paddle.
+Flash teleports the paddle to ball's current y coordinate.
 
-To win, player must make it to at least 7 points, with at least two points lead. 
+Each player starts with a total of 4 gadget points, players can decide which gadget to spend their points on. 
+
+To win, player must make it to at least 7 points, with at least two points lead.
