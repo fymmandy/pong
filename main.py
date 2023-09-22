@@ -1,3 +1,4 @@
+from ast import While
 import pygame
 import random 
 
@@ -26,15 +27,17 @@ WHITE = (255,255,255)
 #ball (radius in pixel, ball coordinates)
 radius = 15
 ball_x, ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
-ball_set_x, ball_set_y = 0.3, 0.3
+ball_set_x, ball_set_y = 0.2, 0.2
 ball_vel_x, ball_vel_y = 0.2,0.2
 #creation of phantom ball
 phantom_ball_x, phantom_ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
-phantom_ball_set_x, phantom_ball_set_y = 0.3, 0.3
+phantom_ball_set_x, phantom_ball_set_y = 0.2, 0.2
 phantom_ball_vel_x, phantom_ball_vel_y = 0.2,0.2
 #Paddle dimensions
-paddle_width, paddle_height = 20, 120
-left_paddle_y = right_paddle_y = HEIGHT/2 - paddle_height/2
+paddle_width= 20
+left_paddle_height = right_paddle_height = 120
+left_paddle_y = HEIGHT/2 - left_paddle_height/2
+right_paddle_y = HEIGHT/2 - right_paddle_height/2
 left_paddle_x, right_paddle_x = 100 - paddle_width/2, WIDTH-(100 - paddle_width/2)
 right_paddle_vel = left_paddle_vel = 0
 
@@ -77,12 +80,14 @@ while run:
     if ball_x >= WIDTH - radius:
         ball_x, ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
         phantom_ball_x, phantom_ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
+        #to reset the paddles
+        left_paddle_height = right_paddle_height = 120
         dir = random.choice(direction)
         ang = random.choice(angle)
         if dir == 0:
             if ang == 0:
-                ball_vel_y, ball_vel_x = -2*ball_set_y, ball_set_x
-                phantom_ball_vel_y, phantom_ball_vel_x = -2*phantom_ball_set_y, phantom_ball_set_x
+                ball_vel_y, ball_vel_x = -1.75*ball_set_y, ball_set_x
+                phantom_ball_vel_y, phantom_ball_vel_x = -1.75*phantom_ball_set_y, phantom_ball_set_x
             if ang == 1:
                 ball_vel_y,ball_vel_x = -1*ball_set_y, ball_set_x
                 phantom_ball_vel_y,phantom_ball_vel_x = -1*phantom_ball_set_y, phantom_ball_set_x
@@ -91,14 +96,14 @@ while run:
                 phantom_ball_vel_y,phantom_ball_vel_x = -1*phantom_ball_set_y, 2*phantom_ball_set_x
         if dir == 1:
             if ang == 0:
-                ball_vel_y, ball_vel_x = 2*ball_set_y, ball_set_x
-                phantom_ball_vel_y, phantom_ball_vel_x = 2*phantom_ball_set_y, phantom_ball_set_x
+                ball_vel_y, ball_vel_x = 1.75*ball_set_y, ball_set_x
+                phantom_ball_vel_y, phantom_ball_vel_x = 1.75*phantom_ball_set_y, phantom_ball_set_x
             if ang == 1:
                 ball_vel_y,ball_vel_x = 1*ball_set_y, ball_set_x
                 phantom_ball_vel_y,phantom_ball_vel_x = 1*phantom_ball_set_y, phantom_ball_set_x
             if ang == 2:
-                ball_vel_y,ball_vel_x = 1*ball_set_y, 2*ball_set_x
-                phantom_ball_vel_y,phantom_ball_vel_x = 1*phantom_ball_set_y, 2*phantom_ball_set_x
+                ball_vel_y,ball_vel_x = 1*ball_set_y, 1.75*ball_set_x
+                phantom_ball_vel_y,phantom_ball_vel_x = 1*phantom_ball_set_y, 1.75*phantom_ball_set_x
 
         ball_vel_x *= -1
         phantom_ball_vel_x *= -1
@@ -106,38 +111,40 @@ while run:
     if ball_x <=0 + radius:
         ball_x, ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
         phantom_ball_x, phantom_ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
+        #to reset the paddles
+        left_paddle_height = right_paddle_height = 120        
         dir = random.choice(direction)
         ang = random.choice(angle)
         if dir == 0:
             if ang == 0:
-                ball_vel_y, ball_vel_x = -2*ball_set_y, ball_set_x
-                phantom_ball_vel_y, phantom_ball_vel_x = -2*phantom_ball_set_y, phantom_ball_set_x
+                ball_vel_y, ball_vel_x = -1.5*ball_set_y, ball_set_x
+                phantom_ball_vel_y, phantom_ball_vel_x = -1.5*phantom_ball_set_y, phantom_ball_set_x
             if ang == 1:
                 ball_vel_y,ball_vel_x = -1*ball_set_y, ball_set_x
                 phantom_ball_vel_y,phantom_ball_vel_x = -1*phantom_ball_set_y, phantom_ball_set_x
             if ang == 2:
-                ball_vel_y,ball_vel_x = -1*ball_set_y, 2*ball_set_x
-                phantom_ball_vel_y,phantom_ball_vel_x = -1*phantom_ball_set_y, 2*phantom_ball_set_x
+                ball_vel_y,ball_vel_x = -1*ball_set_y, 1.5*ball_set_x
+                phantom_ball_vel_y,phantom_ball_vel_x = -1*phantom_ball_set_y, 1.5*phantom_ball_set_x
         if dir == 1:
             if ang == 0:
-                ball_vel_y,ball_vel_x = 2*ball_set_y, ball_set_x
-                phantom_ball_vel_y,phantom_ball_vel_x = 2*phantom_ball_set_y, phantom_ball_set_x
+                ball_vel_y,ball_vel_x = 1.5*ball_set_y, ball_set_x
+                phantom_ball_vel_y,phantom_ball_vel_x = 1.5*phantom_ball_set_y, phantom_ball_set_x
             if ang == 1:
                 ball_vel_y,ball_vel_x = 1*ball_set_y, ball_set_x
                 phantom_ball_vel_y,phantom_ball_vel_x = 1*phantom_ball_set_y, phantom_ball_set_x
             if ang == 2:
-                ball_vel_y,ball_vel_x = 1*ball_set_y, 2*ball_set_x
-                phantom_ball_vel_y,phantom_ball_vel_x = 1*phantom_ball_set_y, 2*phantom_ball_set_x
+                ball_vel_y,ball_vel_x = 1*ball_set_y, 1.5*ball_set_x
+                phantom_ball_vel_y,phantom_ball_vel_x = 1*phantom_ball_set_y, 1.5*phantom_ball_set_x
 
 
         
     #paddle's movement control
-    if left_paddle_y >= HEIGHT - paddle_height:
-        left_paddle_y = HEIGHT - paddle_height
+    if left_paddle_y >= HEIGHT - left_paddle_height:
+        left_paddle_y = HEIGHT - left_paddle_height
     if left_paddle_y <= 0:
         left_paddle_y = 0
-    if right_paddle_y >= HEIGHT - paddle_height:
-        right_paddle_y = HEIGHT - paddle_height
+    if right_paddle_y >= HEIGHT - right_paddle_height:
+        right_paddle_y = HEIGHT - right_paddle_height
     if right_paddle_y <= 0:
         right_paddle_y = 0
     
@@ -145,14 +152,14 @@ while run:
     #left paddle collisons
     #check if x position of ball is within the range of the paddle's x position
     if left_paddle_x <= ball_x <= left_paddle_x + paddle_width:
-        if left_paddle_y <= ball_y <= left_paddle_y + paddle_height:
+        if left_paddle_y <= ball_y <= left_paddle_y + left_paddle_height:
             ball_x = left_paddle_x + paddle_width
             phantom_ball_x = left_paddle_x + paddle_width
             ball_vel_x *= -1
             phantom_ball_vel_x *= -1
     #right paddle collisions
     if right_paddle_x <= ball_x <= right_paddle_x + paddle_width:
-        if right_paddle_y <= ball_y <= right_paddle_y + paddle_height:
+        if right_paddle_y <= ball_y <= right_paddle_y + right_paddle_height:
             ball_x = right_paddle_x
             phantom_ball_x = right_paddle_x
             ball_vel_x *= -1
@@ -163,7 +170,7 @@ while run:
     if gadget_pair == 1:
         if left_gadget == 1:
             if left_paddle_x <= ball_x <= left_paddle_x + paddle_width:
-                if left_paddle_y <= ball_y <= left_paddle_y + paddle_height:
+                if left_paddle_y <= ball_y <= left_paddle_y + left_paddle_height:
                     ball_x = left_paddle_x + paddle_width
                     ball_vel_x *= -3
                     phantom_ball_vel_x *= -3
@@ -177,7 +184,7 @@ while run:
                 
         if right_gadget == 1:
             if right_paddle_x <= ball_x <= right_paddle_x + paddle_width:
-                if right_paddle_y <= ball_y <= right_paddle_y + paddle_height:
+                if right_paddle_y <= ball_y <= right_paddle_y + right_paddle_height:
                     ball_x = right_paddle_x
                     ball_vel_x *= -3
                     phantom_ball_vel_x *= -3
@@ -191,7 +198,7 @@ while run:
     elif gadget_pair == 2:
         if left_gadget == 1:
             if left_paddle_x <= ball_x <= left_paddle_x + paddle_width:
-                if left_paddle_y <= ball_y <= left_paddle_y + paddle_height:
+                if left_paddle_y <= ball_y <= left_paddle_y + left_paddle_height:
                     ball_x = left_paddle_x + paddle_width
                     phantom_ball_x = left_paddle_x + paddle_width
                     ball_vel_x *= -1
@@ -199,17 +206,25 @@ while run:
                     phantom_ball_vel_y *= -1
                     left_gadget = 0
                     left_gadget_remaining -= 1
+        elif left_gadget == 2:
+            left_paddle_height = left_paddle_height * 1.75
+            left_gadget = 0
+            left_gadget_remaining -= 1 
+            
         if right_gadget == 1:
             if right_paddle_x <= ball_x <= right_paddle_x + paddle_width:
-                if right_paddle_y <= ball_y <= right_paddle_y + paddle_height:
+                if right_paddle_y <= ball_y <= right_paddle_y + right_paddle_height:
                     ball_x = right_paddle_x
                     phantom_ball_x = right_paddle_x
                     ball_vel_x *= -1
                     phantom_ball_vel_x *= -1
                     phantom_ball_vel_y *= -1
                     right_gadget = 0
-                    right_gadget_remaining -= 1                    
-
+                    right_gadget_remaining -= 1
+        elif right_gadget == 2:
+            right_paddle_height = right_paddle_height * 1.75
+            right_gadget = 0
+            right_gadget_remaining -= 1                 
         
     #movement
     ball_x += ball_vel_x
@@ -221,8 +236,8 @@ while run:
     
     #objects      
     pygame.draw.circle(wn, BLUE, (ball_x, ball_y),radius)
-    pygame.draw.rect(wn, RED, pygame.Rect(left_paddle_x, left_paddle_y, paddle_width, paddle_height))
-    pygame.draw.rect(wn, RED, pygame.Rect(right_paddle_x, right_paddle_y, paddle_width, paddle_height))
+    pygame.draw.rect(wn, RED, pygame.Rect(left_paddle_x, left_paddle_y, paddle_width, left_paddle_height))
+    pygame.draw.rect(wn, RED, pygame.Rect(right_paddle_x, right_paddle_y, paddle_width, right_paddle_height))
     
     #phantom ball
     pygame.draw.circle(wn, BLUE, (phantom_ball_x, phantom_ball_y),radius)
