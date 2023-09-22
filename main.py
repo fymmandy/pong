@@ -32,7 +32,7 @@ ball_set_x, ball_set_y = 0.73, 0.73
 ball_vel_x, ball_vel_y = 0.73,0.73
 #creation of phantom ball
 phantom_ball_x, phantom_ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
-phantom_ball_set_x, phantom_ball_set_y = 0.73 0.73
+phantom_ball_set_x, phantom_ball_set_y = 0.73, 0.73
 phantom_ball_vel_x, phantom_ball_vel_y = 0.73,0.73
 #Paddle dimensions
 paddle_width= 20
