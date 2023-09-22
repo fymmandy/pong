@@ -263,11 +263,11 @@ while run:
     
     #end screen
     winning_font = pygame.font.SysFont('callibri', 100)
-    if player_1 >= 3 and player_1 - player_2 >= 2:
+    if player_1 >= 7 and player_1 - player_2 >= 2:
         wn.fill(BLACK)
         endscreen = winning_font.render("Player 1 WINS", True, WHITE)
         wn.blit(endscreen, (250,250))
-    if player_2 >= 3 and player_2 - player_1 >= 2:
+    if player_2 >= 7 and player_2 - player_1 >= 2:
         wn.fill(BLACK)
         endscreen = winning_font.render("Player 2 WINS!", True, WHITE)
         wn.blit(endscreen, (250,250))
