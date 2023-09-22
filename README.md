@@ -27,6 +27,6 @@ Flash teleports the paddle to ball's current y coordinate.
 
 Phantom ball gadget creates a second ball when ball comes in contact with activated paddle. The phantom ball will bounce in the opposite direction of the ball, confusing your opponent. The your opponent choose to block the phantom ball, it will simply go through the paddle.
 
-Paddle cloning will be immediately activated, where the paddle clones itself, both being solid thus providing more area control. 
+Paddle enlarger will be immediately activated, where the paddle enlarge by 75%, providing more area control. The effect will last until the round ends. 
 
 To win, player must make it to at least 7 points, with at least two points lead.
