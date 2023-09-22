@@ -15,6 +15,7 @@ WIDTH, HEIGHT = 1000, 600
 wn = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Crazy Pong")
 run = True
+player_1 = player_2 = 0
 direction = [0,1]
 angle = [0,1,2]
 
@@ -27,12 +28,12 @@ WHITE = (255,255,255)
 #ball (radius in pixel, ball coordinates)
 radius = 15
 ball_x, ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
-ball_set_x, ball_set_y = 0.2, 0.2
-ball_vel_x, ball_vel_y = 0.2,0.2
+ball_set_x, ball_set_y = 0.73, 0.73
+ball_vel_x, ball_vel_y = 0.73,0.73
 #creation of phantom ball
 phantom_ball_x, phantom_ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
-phantom_ball_set_x, phantom_ball_set_y = 0.2, 0.2
-phantom_ball_vel_x, phantom_ball_vel_y = 0.2,0.2
+phantom_ball_set_x, phantom_ball_set_y = 0.73 0.73
+phantom_ball_vel_x, phantom_ball_vel_y = 0.73,0.73
 #Paddle dimensions
 paddle_width= 20
 left_paddle_height = right_paddle_height = 120
@@ -53,17 +54,17 @@ while run:
             run = False
         elif i.type ==pygame.KEYDOWN:
             if i.key == pygame.K_UP:
-                right_paddle_vel =-0.4
+                right_paddle_vel =-0.6
             if i.key == pygame.K_DOWN:
-                right_paddle_vel = 0.4
+                right_paddle_vel = 0.6
             if i.key == pygame.K_RIGHT and right_gadget_remaining > 0:
                 right_gadget = 1
             if i.key == pygame.K_LEFT and right_gadget_remaining > 0:
                 right_gadget =2
             if i.key == pygame.K_w:
-                left_paddle_vel =-0.4
+                left_paddle_vel =-0.6
             if i.key == pygame.K_s:
-                left_paddle_vel = 0.4
+                left_paddle_vel = 0.6
             if i.key == pygame.K_d and left_gadget_remaining > 0:
                 left_gadget = 1
             if i.key == pygame.K_a and left_gadget_remaining > 0:
@@ -78,6 +79,7 @@ while run:
     if (phantom_ball_y <= 0 + radius) or (phantom_ball_y >= HEIGHT - radius):
         phantom_ball_vel_y*= -1
     if ball_x >= WIDTH - radius:
+        player_1 += 1
         ball_x, ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
         phantom_ball_x, phantom_ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
         #to reset the paddles
@@ -109,6 +111,7 @@ while run:
         phantom_ball_vel_x *= -1
         
     if ball_x <=0 + radius:
+        player_2 += 1
         ball_x, ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
         phantom_ball_x, phantom_ball_y = WIDTH/2 - radius,  HEIGHT/2 - radius
         #to reset the paddles
@@ -234,6 +237,16 @@ while run:
     right_paddle_y += right_paddle_vel
     left_paddle_y += left_paddle_vel
     
+    #score board
+    font = pygame.font.SysFont('callibri', 32)
+    score = font.render("Player 1: " + str(player_1), True, WHITE)
+    wn.blit(score, (25,25))
+    score2 = font.render("Player 2: " + str(player_2), True, WHITE)
+    wn.blit(score2, (850,25))
+    pu_left_1 = font.render("Power Up remaining: " + str(left_gadget_remaining), True, WHITE)
+    wn.blit(pu_left_1, (25,50))
+    pu_left_2 = font.render("Power Up remaining: " + str(right_gadget_remaining), True, WHITE)
+    wn.blit(pu_left_2, (720,50))
     #objects      
     pygame.draw.circle(wn, BLUE, (ball_x, ball_y),radius)
     pygame.draw.rect(wn, RED, pygame.Rect(left_paddle_x, left_paddle_y, paddle_width, left_paddle_height))
@@ -247,5 +260,16 @@ while run:
         pygame.draw.circle(wn, WHITE,(left_paddle_x + 10,left_paddle_y +10), 4)
     if right_gadget == 1:
         pygame.draw.circle(wn, WHITE,(right_paddle_x + 10,right_paddle_y +10), 4)
-        
+    
+    #end screen
+    winning_font = pygame.font.SysFont('callibri', 100)
+    if player_1 >= 3 and player_1 - player_2 >= 2:
+        wn.fill(BLACK)
+        endscreen = winning_font.render("Player 1 WINS", True, WHITE)
+        wn.blit(endscreen, (250,250))
+    if player_2 >= 3 and player_2 - player_1 >= 2:
+        wn.fill(BLACK)
+        endscreen = winning_font.render("Player 2 WINS!", True, WHITE)
+        wn.blit(endscreen, (250,250))
+    
     pygame.display.update()
